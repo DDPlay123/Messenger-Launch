@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Messenger</string>
+
+    <string name="sign_hint_title">使用手機號碼\n或 Email 帳號登入</string>
+    <string name="input_account_hint_text">手機號碼或電子郵件</string>
+    <string name="sign_hint_password_text">密碼</string>
+    <string name="sign_hint_store_text">儲存登入資訊</string>
+    <string name="sign_in">登入</string>
+    <string name="create_new_account_text">建立新帳號</string>
+    <string name="forget_password_text">忘記密碼？</string>
+    <string name="fake_facebook_com">fake.facebook.com</string>
+    <string name="cancel">取消</string>
+    <string name="join_fake_facebook">加入 fake Facebook</string>
+    <string name="sign_up_hint_text">請填入您的名稱及真實訊息。</string>
+    <string name="first_name">姓氏</string>
+    <string name="last_name">名稱</string>
+    <string name="man">男性</string>
+    <string name="woman">女性</string>
+    <string name="secrecy">保密</string>
+    <string name="gender_hint_text">您的性別為何？</string>
+    <string name="phone_number">電話號碼</string>
+    <string name="_886">+886 -</string>
+    <string name="email_address">電子郵件地址</string>
+    <string name="new_password">新密碼</string>
+    <string name="confirm_password">確認密碼</string>
+    <string name="continue_text">繼續</string>
+    <string name="skip_text">略過</string>
+    <string name="forget_password_title_hint">忘記密碼</string>
+    <string name="forget_password_hint">輸入電子郵件地址或電話號碼</string>
+    <string name="return_sign_in">返回登入頁面</string>
+    <string name="loading">載入中</string>
+    <string name="create_account_hint_title">「Messenger」想要使用「fake.facebook.com」登入</string>
+    <string name="create_account_hint_subtitle">這會讓App和網路分享關於您的資訊。</string>
+    <string name="verify_phone_hint_title">如要啟用電話號碼進行登入\n則必須先進行驗證</string>
+    <string name="verify_phone_hint_subtitle">我們將會對您的手機發送驗證碼\n當然，您也可以選擇略過</string>
+    <string name="send_otp_hint">已將驗證碼發送至您的電話號碼</string>
+    <string name="input_OTP_hint">請填入驗證碼</string>
+    <string name="verify_error">驗證失敗</string>
+    <string name="timeout_retry">連線逾時，請重新嘗試</string>
+    <string name="occur_error">發生錯誤</string>
+    <string name="auth_error">無法註冊</string>
+    <string name="processing">處理中...</string>
+    <string name="confirm_password_error_hint">請確認密碼是否相同</string>
+    <string name="password_error_hint">密碼必須在8位數字及英文字母組成</string>
+    <string name="email_error_tint">請輸入正確的電子郵件地址</string>
+    <string name="phone_error_hint">請輸入正確的電話號碼</string>
+    <string name="last_name_error_hint">請輸入您的名稱</string>
+    <string name="first_name_error_hint">請輸入您的姓氏</string>
+
+</resources>
