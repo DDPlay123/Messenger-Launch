@@ -1,21 +1,21 @@
 package com.side.project.messenger.data.local
 
-
 import androidx.room.*
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 
 @Dao
 interface UserAccountDao {
 
-    @Query("SELECT * FROM userAccounts ORDER BY email DESC")
+    @Query("SELECT * FROM userAccounts ORDER BY userId DESC")
     fun getAllAccount(): Observable<List<UserAccounts>>
 
-    @Query("SELECT * FROM userAccounts WHERE email = :email")
-    fun getAccountByEmail(email: String): Observable<UserAccounts>
+    @Query("SELECT * FROM userAccounts WHERE userId = :userId")
+    fun getAccountByUserId(userId: String): Observable<UserAccounts>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUserAccount(userAccounts: UserAccounts)
+    fun insertUserAccount(userAccounts: UserAccounts): Completable
 
     @Delete
-    fun deleteUserAccount(userAccounts: UserAccounts)
+    fun deleteUserAccount(userAccounts: UserAccounts): Completable
 }

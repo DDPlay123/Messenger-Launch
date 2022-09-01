@@ -4,22 +4,23 @@ package com.side.project.messenger.viewModels
 import androidx.lifecycle.ViewModel
 import com.side.project.messenger.data.local.UserAccounts
 import com.side.project.messenger.data.repo.UserAccountRepo
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class LaunchViewModel: ViewModel(), KoinComponent {
-    private val repo: UserAccountRepo by inject()
+    private val userAccountRepo: UserAccountRepo by inject()
 
-    suspend fun getAllAccount(): Observable<List<UserAccounts>> =
-        repo.getAllAccount()
+    fun getAllAccount(): Observable<List<UserAccounts>> =
+        userAccountRepo.getAllAccount()
 
-    suspend fun getAccountByEmail(email: String): Observable<UserAccounts> =
-        repo.getAccountByEmail(email)
+    fun getAccountByUserId(userId: String): Observable<UserAccounts> =
+        userAccountRepo.getAccountByUserId(userId)
 
-    suspend fun insertUserAccount(userAccounts: UserAccounts) =
-        repo.insertUserAccount(userAccounts)
+    fun insertUserAccount(userAccounts: UserAccounts): Completable =
+        userAccountRepo.insertUserAccount(userAccounts)
 
-    suspend fun deleteUserAccount(userAccounts: UserAccounts) =
-        repo.deleteUserAccount(userAccounts)
+    fun deleteUserAccount(userAccounts: UserAccounts): Completable =
+        userAccountRepo.deleteUserAccount(userAccounts)
 }
