@@ -9,7 +9,6 @@ import java.io.Serializable
 
 data class UserAccount (
 
-    var userId: String,
     var userImage: String,
     var userFirstName: String,
     var userLastName: String,
@@ -24,21 +23,21 @@ data class UserAccount (
 @Entity(tableName = "UserAccounts")
 data class UserAccounts (
     @PrimaryKey
-    var email: String,
+    var userId: String,
 
-    var userAccount: MutableList<UserAccount>
+    var userAccount: UserAccount
 )
 
 class UserAccountConverters {
     @TypeConverter
-    fun fromUserAccount(userAccount: List<UserAccount>): String {
-        val type = object : TypeToken<List<UserAccount>>() {}.type
+    fun fromUserAccount(userAccount: UserAccount): String {
+        val type = object : TypeToken<UserAccount>() {}.type
         return Gson().toJson(userAccount, type)
     }
 
     @TypeConverter
-    fun toUserAccount(userAccountString: String): List<UserAccount> {
-        val type = object : TypeToken<List<UserAccount>>() {}.type
+    fun toUserAccount(userAccountString: String): UserAccount {
+        val type = object : TypeToken<UserAccount>() {}.type
         return Gson().fromJson(userAccountString, type)
     }
 }

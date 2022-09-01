@@ -74,6 +74,11 @@ dependencies {
     implementation "io.insert-koin:koin-android:3.2.0"
     // ViewModel (避免衝突，需要再引入一次)
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    //DataStore
+    implementation("androidx.datastore:datastore-preferences-core:1.0.0")
+    implementation("androidx.datastore:datastore-preferences-rxjava3:1.0.0")
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.9'
     // required to avoid crash on Android 12 API 31
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
 }
