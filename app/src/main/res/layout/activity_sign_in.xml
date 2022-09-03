@@ -5,8 +5,6 @@
 
     <data>
 
-        <import type="android.view.View" />
-
         <variable
             name="email"
             type="String" />
@@ -27,7 +25,7 @@
         android:paddingEnd="@dimen/_24sdp"
         android:paddingBottom="@dimen/_24sdp"
         android:scrollbars="none"
-        tools:context=".activity.launch.SignInActivity">
+        tools:context=".ui.activity.launch.SignInActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -53,7 +51,7 @@
                 android:layout_marginTop="@dimen/_24sdp"
                 android:fontFamily="@font/ubuntu_bold"
                 android:gravity="center"
-                android:text="@string/sign_hint_title"
+                android:text="@string/hint_sign_in_title"
                 android:textColor="@color/primaryText"
                 android:textSize="@dimen/_24ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -76,13 +74,13 @@
                     android:layout_height="@dimen/_45sdp"
                     android:background="@drawable/background_input_top"
                     android:fontFamily="@font/ubuntu_regular"
-                    android:hint="@string/input_account_hint_text"
+                    android:hint="@string/hint_input_account_text"
                     android:imeOptions="actionNext"
                     android:importantForAccessibility="no"
-                    android:text="@{email}"
                     android:inputType="textEmailAddress"
                     android:paddingStart="@dimen/_16sdp"
                     android:paddingEnd="@dimen/_16sdp"
+                    android:text="@{email}"
                     android:textColor="@color/primaryText"
                     android:textColorHint="@color/secondaryText"
                     android:textSize="@dimen/_13ssp" />
@@ -99,8 +97,8 @@
                     android:padding="@dimen/_2sdp"
                     android:src="@drawable/ic_round_cancel_24"
                     android:tint="@color/buttonBackground"
-                    android:visibility="@{email.length() > 0 ? View.VISIBLE : View.GONE, default=gone}"
-                    tools:visibility="visible" />
+                    android:visibility="gone"
+                    app:attachedDelete="@{inputAccount}" />
 
             </FrameLayout>
 
@@ -119,7 +117,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:background="@drawable/background_input_bottom"
-                    android:hint="@string/sign_hint_password_text"
+                    android:hint="@string/hint_input_password_text"
                     android:imeOptions="actionDone"
                     android:importantForAccessibility="no"
                     android:inputType="textPassword"
@@ -141,8 +139,8 @@
                     android:padding="@dimen/_2sdp"
                     android:src="@drawable/ic_round_cancel_24"
                     android:tint="@color/buttonBackground"
-                    android:visibility="@{password.length() > 0 ? View.VISIBLE : View.GONE, default=gone}"
-                    tools:visibility="visible" />
+                    android:visibility="gone"
+                    app:attachedDelete="@{inputPassword}" />
 
             </FrameLayout>
 
@@ -159,32 +157,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ubuntu_regular"
-                android:text="@string/sign_hint_store_text"
+                android:text="@string/hint_storage_account_text"
                 android:textColor="@color/secondaryText"
                 app:layout_constraintBottom_toBottomOf="@id/checkboxSignIn"
                 app:layout_constraintStart_toEndOf="@id/checkboxSignIn"
                 app:layout_constraintTop_toTopOf="@id/checkboxSignIn" />
-
-<!--            android:buttonClickable="@{true}"-->
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSignIn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/buttonBackground"
-
-                android:clickable="false"
                 android:includeFontPadding="false"
                 android:padding="@dimen/_10sdp"
-                android:text="@string/sign_in"
+                android:text="@string/text_sign_in"
                 android:textColor="@color/secondaryText"
                 android:textSize="@dimen/_12ssp"
+                app:btnBindEdit1="@{inputAccount}"
+                app:btnBindEdit2="@{inputPassword}"
                 app:cornerRadius="@dimen/_8sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/checkboxSignIn"
-                tools:textColor="@color/white" />
+                app:layout_constraintTop_toBottomOf="@id/checkboxSignIn" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSignUp"
@@ -193,7 +188,7 @@
                 android:backgroundTint="@color/buttonBackground"
                 android:includeFontPadding="false"
                 android:padding="@dimen/_10sdp"
-                android:text="@string/create_new_account_text"
+                android:text="@string/hint_create_account_text"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12ssp"
                 app:cornerRadius="@dimen/_8sdp"
@@ -208,9 +203,10 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:clickable="true"
                 android:focusable="true"
+                android:padding="@dimen/_10sdp"
                 android:fontFamily="@font/ubuntu_regular"
                 android:gravity="center"
-                android:text="@string/forget_password_text"
+                android:text="@string/hint_forget_password"
                 android:textColor="@color/blue_text_selector"
                 android:textSize="@dimen/_14ssp"
                 app:layout_constraintEnd_toEndOf="parent"

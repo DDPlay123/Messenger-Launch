@@ -55,10 +55,10 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:30.3.2')
-    implementation 'com.google.firebase:firebase-auth-ktx:21.0.7'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.8'
     implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.7'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.2.2'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.8'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.3.0'
     // MultiDex
     implementation 'androidx.multidex:multidex:2.0.1'
     // Room (支援 rxjava3 的)

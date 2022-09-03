@@ -15,8 +15,7 @@ data class UserAccount (
     var userGender: String,
     var userPhone: String,
     var userEmail: String,
-    var userPassword: String,
-    var userPhoneVerify: Long
+    var userPassword: String
 
 ): Serializable
 

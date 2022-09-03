@@ -2,11 +2,11 @@ package com.side.project.messenger.ui.activity.launch
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.side.project.messenger.ui.activity.BaseActivity
 
-class SplashActivity: AppCompatActivity() {
+class SplashActivity: BaseActivity() {
     private lateinit var splashScreen: SplashScreen
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +15,6 @@ class SplashActivity: AppCompatActivity() {
 
         // 跳頁
         splashScreen.setKeepOnScreenCondition{ true }
-        startActivity(Intent(applicationContext, SignInActivity::class.java))
-        finish()
+        start(SignInActivity::class.java, true)
     }
 }
