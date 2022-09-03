@@ -3,9 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/a7032/Desktop/Messenger/app/src/main/res/drawable/background_input.xml" value="0.219" />
+        <entry key="..\:/Users/a7032/Desktop/Messenger/app/src/main/res/drawable/background_input_bottom.xml" value="0.219" />
+        <entry key="..\:/Users/a7032/Desktop/Messenger/app/src/main/res/drawable/background_input_sign_up.xml" value="0.219" />
+        <entry key="..\:/Users/a7032/Desktop/Messenger/app/src/main/res/drawable/background_input_top.xml" value="0.219" />
         <entry key="..\:/Users/a7032/Desktop/Messenger/app/src/main/res/layout/activity_main.xml" value="0.34739583333333335" />
         <entry key="..\:/Users/a7032/Desktop/Messenger/app/src/main/res/layout/activity_sign_in.xml" value="0.358695652173913" />
         <entry key="..\:/Users/a7032/Desktop/Messenger/app/src/main/res/layout/activity_sign_up.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/a7032/Desktop/Messenger/app/src/main/res/layout/dialog_forget_password.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/a7032/Desktop/Messenger/app/src/main/res/layout/dialog_loading.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/a7032/Desktop/Messenger/app/src/main/res/layout/dialog_prompt.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/a7032/Desktop/Messenger/app/src/main/res/layout/dialog_sign_up.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/a7032/Desktop/Messenger/app/src/main/res/layout/dialog_verify_phone.xml" value="0.358695652173913" />
       </map>
     </option>
   </component>

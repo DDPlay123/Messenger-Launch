@@ -1,9 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.launch.SignUpActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.side.project.messenger.ui.vm.LaunchViewModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingStart="@dimen/_24sdp"
+        android:paddingEnd="@dimen/_24sdp"
+        android:paddingBottom="@dimen/_24sdp"
+        android:scrollbars="none"
+        tools:context=".ui.activity.launch.SignUpActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imageProfile"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:background="@drawable/background_image_profile"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_user"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riv_oval="true" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:background="@drawable/background_image_icon"
+                android:padding="@dimen/_5sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_round_photo_camera_24"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/imageProfile"
+                app:layout_constraintEnd_toEndOf="@id/imageProfile"
+                app:riv_oval="true" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/imageIcon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:fontFamily="@font/ubuntu_bold"
+                android:gravity="center"
+                android:text='@{"您好，" + viewModel.receiveInfo.first}'
+                android:textColor="@color/primaryText"
+                android:textSize="@dimen/_18ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageProfile"
+                tools:text="您好，XXX" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:fontFamily="@font/ubuntu_bold"
+                android:gravity="center"
+                android:text="@string/hint_check_details"
+                android:textColor="@color/primaryText"
+                android:textSize="@dimen/_24ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageIcon" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvEmailHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="@string/text_phone_number"
+                android:textColor="@color/secondaryText"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="@+id/layoutInputPhone"
+                app:layout_constraintTop_toBottomOf="@+id/tvHint" />
+
+            <FrameLayout
+                android:id="@+id/layoutInputPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvEmailHint">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/inputPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/background_input"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:hint="@string/text_phone_number"
+                    android:imeOptions="actionNext"
+                    android:importantForAccessibility="no"
+                    android:inputType="phone"
+                    android:paddingStart="@dimen/_16sdp"
+                    android:paddingEnd="@dimen/_16sdp"
+                    android:text="@{viewModel.receiveInfo.second}"
+                    android:textColor="@color/primaryText"
+                    android:textColorHint="@color/secondaryText"
+                    android:textSize="@dimen/_13ssp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageDeletePhone"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/app_name"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_round_cancel_24"
+                    android:tint="@color/buttonBackground"
+                    android:visibility="gone"
+                    app:attachedDelete="@{inputPhone}"
+                    tools:visibility="gone" />
+
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPhoneHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="@string/text_email_address"
+                android:textColor="@color/secondaryText"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="@+id/layoutInputEmail"
+                app:layout_constraintTop_toBottomOf="@+id/layoutInputPhone" />
+
+            <FrameLayout
+                android:id="@+id/layoutInputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:background="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPhoneHint">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/inputEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/background_input"
+                    android:hint="@string/text_email_address"
+                    android:imeOptions="actionDone"
+                    android:importantForAccessibility="no"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="@dimen/_16sdp"
+                    android:paddingEnd="@dimen/_16sdp"
+                    android:text="@{viewModel.receiveInfo.third}"
+                    android:textColor="@color/primaryText"
+                    android:textColorHint="@color/secondaryText"
+                    android:textSize="@dimen/_13ssp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageDeleteEmail"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_round_cancel_24"
+                    android:tint="@color/buttonBackground"
+                    android:visibility="gone"
+                    app:attachedDelete="@{inputEmail}"
+                    tools:visibility="gone" />
+
+            </FrameLayout>
+
+            <CheckBox
+                android:id="@+id/checkboxSignUp"
+                style="@style/CustomCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutInputEmail" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRule1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_regular"
+                android:text="@string/text_i_agree"
+                android:textColor="@color/secondaryText"
+                app:layout_constraintBottom_toBottomOf="@id/checkboxSignUp"
+                app:layout_constraintStart_toEndOf="@id/checkboxSignUp"
+                app:layout_constraintTop_toTopOf="@id/checkboxSignUp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRule2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_regular"
+                android:text="@string/text_social_rule"
+                android:textColor="@color/secondary"
+                app:layout_constraintBottom_toBottomOf="@id/checkboxSignUp"
+                app:layout_constraintStart_toEndOf="@id/tvRule1"
+                app:layout_constraintTop_toTopOf="@id/checkboxSignUp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRule3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_regular"
+                android:text="@string/text_rule"
+                android:textColor="@color/secondaryText"
+                app:layout_constraintBottom_toBottomOf="@id/checkboxSignUp"
+                app:layout_constraintStart_toEndOf="@id/tvRule2"
+                app:layout_constraintTop_toTopOf="@id/checkboxSignUp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSignUp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:backgroundTint="@color/buttonBackground"
+                android:includeFontPadding="false"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/hint_create_account_text"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:cornerRadius="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/checkboxSignUp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

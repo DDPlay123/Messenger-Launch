@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.side.project.messenger.ui.vm.LaunchViewModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/SignUpContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/layoutHeader"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@drawable/background_sign_up_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCancelHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="@dimen/_14sdp"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="@string/text_cancel"
+                android:textColor="@color/blue_text_selector"
+                android:textSize="@dimen/_14ssp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:src="@drawable/ic_baseline_https_24"
+                    android:tint="@color/white"
+                    app:tint="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/hint_fake_facebook_com"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14ssp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageRefreshHeader"
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:layout_gravity="center|end"
+                android:layout_marginEnd="@dimen/_14sdp"
+                android:src="@drawable/ic_round_refresh_24"
+                android:tint="@color/blue_text_selector" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@{viewModel.verifyResult.second ? @color/error : @color/success}"
+            android:fontFamily="@font/ubuntu_regular"
+            android:gravity="center"
+            android:padding="@dimen/_2sdp"
+            android:text="@{viewModel.verifyResult.first}"
+            android:textColor="@color/white"
+            android:visibility="@{viewModel.verifyResult.second ? View.VISIBLE : View.GONE, default = gone}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutHeader"
+            tools:background="@color/error"
+            tools:text="發生一些錯誤"
+            tools:visibility="gone" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvState">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutScroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitleBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#4267B2"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/hint_join_fake_facebook"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/layoutScroll" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:gravity="center"
+                    android:text="@string/hint_create_account_text"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18ssp"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitleBar" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:gravity="center"
+                    android:text="@string/hint_input_detail"
+                    android:textColor="@color/secondaryText"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+                <FrameLayout
+                    android:id="@+id/layoutFirstName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/background_input_sign_up"
+                    app:layout_constraintEnd_toStartOf="@id/layoutLastName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvDescription">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/inputFirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_24sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/ubuntu_regular"
+                        android:imeOptions="actionNext"
+                        android:importantForAccessibility="no"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_8sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/secondaryText"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageDeleteFirstName"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/app_name"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/ic_round_cancel_24"
+                        android:tint="@color/buttonBackground"
+                        android:visibility="gone"
+                        app:attachedDelete="@{inputFirstName}"
+                        tools:visibility="gone" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/layoutLastName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginEnd="@dimen/_30sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/layoutFirstName"
+                    app:layout_constraintTop_toBottomOf="@id/tvDescription">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/inputLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_24sdp"
+                        android:background="@drawable/background_input_sign_up"
+                        android:fontFamily="@font/ubuntu_regular"
+                        android:imeOptions="actionNext"
+                        android:importantForAccessibility="no"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_8sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/secondaryText"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageDeleteLastName"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/app_name"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/ic_round_cancel_24"
+                        android:tint="@color/buttonBackground"
+                        android:visibility="gone"
+                        app:attachedDelete="@{inputLastName}"
+                        tools:visibility="gone" />
+
+                </FrameLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/errorFirstName"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:src="@drawable/ic_round_error_24"
+                    android:visibility="@{viewModel.verifyResult.third.equals(0) ? View.VISIBLE : View.GONE, default = gone}"
+                    app:layout_constraintBottom_toTopOf="@id/layoutFirstName"
+                    app:layout_constraintStart_toStartOf="@id/layoutFirstName"
+                    app:tint="@color/error"
+                    tools:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="@string/text_first_name"
+                    android:textColor="@color/secondaryText"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintBottom_toTopOf="@id/layoutFirstName"
+                    app:layout_constraintStart_toEndOf="@id/errorFirstName" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/errorLastName"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:src="@drawable/ic_round_error_24"
+                    android:visibility="@{viewModel.verifyResult.third.equals(1) ? View.VISIBLE : View.GONE, default = gone}"
+                    app:layout_constraintBottom_toTopOf="@id/layoutLastName"
+                    app:layout_constraintStart_toStartOf="@id/layoutLastName"
+                    app:tint="@color/error"
+                    tools:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="@string/text_last_name"
+                    android:textColor="@color/secondaryText"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintBottom_toTopOf="@id/layoutLastName"
+                    app:layout_constraintStart_toEndOf="@id/errorLastName" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvGenderHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="@string/hint_gender"
+                    android:textColor="@color/secondaryText"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="@id/layoutFirstName"
+                    app:layout_constraintTop_toBottomOf="@id/layoutFirstName" />
+
+                <RadioGroup
+                    android:id="@+id/rgGender"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="6"
+                    app:layout_constraintEnd_toEndOf="@id/layoutLastName"
+                    app:layout_constraintStart_toStartOf="@id/tvGenderHint"
+                    app:layout_constraintTop_toBottomOf="@id/tvGenderHint">
+
+                    <RadioButton
+                        android:id="@+id/rbMan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="@string/text_man" />
+
+                    <RadioButton
+                        android:id="@+id/rbWoman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/text_woman" />
+
+                    <RadioButton
+                        android:id="@+id/rbSecrecy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/text_secrecy" />
+
+                </RadioGroup>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/errorPhoneNumber"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:src="@drawable/ic_round_error_24"
+                    android:visibility="@{viewModel.verifyResult.third.equals(2) ? View.VISIBLE : View.GONE, default = gone}"
+                    app:layout_constraintStart_toStartOf="@id/layoutFirstName"
+                    app:layout_constraintTop_toBottomOf="@id/rgGender"
+                    app:tint="@color/error"
+                    tools:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPhoneHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="@string/text_phone_number"
+                    android:textColor="@color/secondaryText"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toEndOf="@id/errorPhoneNumber"
+                    app:layout_constraintTop_toBottomOf="@id/rgGender" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRegionNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_886"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/layoutPhoneNumber"
+                    app:layout_constraintStart_toStartOf="@id/errorPhoneNumber"
+                    app:layout_constraintTop_toTopOf="@id/layoutPhoneNumber" />
+
+                <FrameLayout
+                    android:id="@+id/layoutPhoneNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/background_input_sign_up"
+                    app:layout_constraintEnd_toEndOf="@+id/layoutLastName"
+                    app:layout_constraintStart_toEndOf="@id/tvRegionNum"
+                    app:layout_constraintTop_toBottomOf="@id/tvPhoneHint">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/inputPhoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_24sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/ubuntu_regular"
+                        android:imeOptions="actionNext"
+                        android:importantForAccessibility="no"
+                        android:inputType="phone"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_8sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/secondaryText"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageDeletePhoneNumber"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/app_name"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/ic_round_cancel_24"
+                        android:tint="@color/buttonBackground"
+                        android:visibility="gone"
+                        app:attachedDelete="@{inputPhoneNumber}"
+                        tools:visibility="gone" />
+
+                </FrameLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/errorEmail"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:src="@drawable/ic_round_error_24"
+                    android:visibility="@{viewModel.verifyResult.third.equals(3) ? View.VISIBLE : View.GONE, default = gone}"
+                    app:layout_constraintStart_toStartOf="@id/layoutFirstName"
+                    app:layout_constraintTop_toBottomOf="@id/layoutPhoneNumber"
+                    app:tint="@color/error"
+                    tools:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvEmailHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="@string/text_email_address"
+                    android:textColor="@color/secondaryText"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toEndOf="@id/errorEmail"
+                    app:layout_constraintTop_toBottomOf="@id/layoutPhoneNumber" />
+
+                <FrameLayout
+                    android:id="@+id/layoutEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/background_input_sign_up"
+                    app:layout_constraintEnd_toEndOf="@+id/layoutLastName"
+                    app:layout_constraintStart_toStartOf="@id/layoutFirstName"
+                    app:layout_constraintTop_toBottomOf="@id/tvEmailHint">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/inputEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_24sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/ubuntu_regular"
+                        android:imeOptions="actionNext"
+                        android:importantForAccessibility="no"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_8sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/secondaryText"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageDeleteEmail"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/app_name"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/ic_round_cancel_24"
+                        android:tint="@color/buttonBackground"
+                        android:visibility="gone"
+                        app:attachedDelete="@{inputEmail}"
+                        tools:visibility="gone" />
+
+                </FrameLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/errorPassword"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:src="@drawable/ic_round_error_24"
+                    android:visibility="@{viewModel.verifyResult.third.equals(4) ? View.VISIBLE : View.GONE, default = gone}"
+                    app:layout_constraintStart_toStartOf="@id/layoutFirstName"
+                    app:layout_constraintTop_toBottomOf="@id/layoutEmail"
+                    app:tint="@color/error"
+                    tools:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPasswordHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="@string/text_new_password"
+                    android:textColor="@color/secondaryText"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toEndOf="@id/errorPassword"
+                    app:layout_constraintTop_toBottomOf="@id/layoutEmail" />
+
+                <FrameLayout
+                    android:id="@+id/layoutPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/background_input_sign_up"
+                    app:layout_constraintEnd_toEndOf="@+id/layoutLastName"
+                    app:layout_constraintStart_toStartOf="@id/layoutFirstName"
+                    app:layout_constraintTop_toBottomOf="@id/tvPasswordHint">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/inputPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_24sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/ubuntu_regular"
+                        android:imeOptions="actionNext"
+                        android:importantForAccessibility="no"
+                        android:inputType="textPassword"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_8sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/secondaryText"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageDeletePassword"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/app_name"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/ic_round_cancel_24"
+                        android:tint="@color/buttonBackground"
+                        android:visibility="gone"
+                        app:attachedDelete="@{inputPassword}"
+                        tools:visibility="gone" />
+
+                </FrameLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/errorPasswordConfirm"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:src="@drawable/ic_round_error_24"
+                    android:visibility="@{viewModel.verifyResult.third.equals(5) ? View.VISIBLE : View.GONE, default = gone}"
+                    app:layout_constraintStart_toStartOf="@id/layoutFirstName"
+                    app:layout_constraintTop_toBottomOf="@id/layoutPassword"
+                    app:tint="@color/error"
+                    tools:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPasswordConfirmHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:text="@string/text_confirm_password"
+                    android:textColor="@color/secondaryText"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toEndOf="@id/errorPasswordConfirm"
+                    app:layout_constraintTop_toBottomOf="@id/layoutPassword" />
+
+                <FrameLayout
+                    android:id="@+id/layoutPasswordConfirm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/background_input_sign_up"
+                    app:layout_constraintEnd_toEndOf="@+id/layoutLastName"
+                    app:layout_constraintStart_toStartOf="@id/layoutFirstName"
+                    app:layout_constraintTop_toBottomOf="@id/tvPasswordConfirmHint">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/inputPasswordConfirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_24sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/ubuntu_regular"
+                        android:imeOptions="actionDone"
+                        android:importantForAccessibility="no"
+                        android:inputType="textPassword"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_8sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/secondaryText"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageDeletePasswordConfirm"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/app_name"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/ic_round_cancel_24"
+                        android:tint="@color/buttonBackground"
+                        android:visibility="gone"
+                        app:attachedDelete="@{inputPasswordConfirm}"
+                        tools:visibility="gone" />
+
+                </FrameLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCreateAccount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:backgroundTint="@color/secondary"
+                    android:includeFontPadding="false"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/hint_create_account_text"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"
+                    app:cornerRadius="@dimen/_8sdp"
+                    app:layout_constraintEnd_toEndOf="@id/layoutLastName"
+                    app:layout_constraintStart_toStartOf="@id/layoutFirstName"
+                    app:layout_constraintTop_toBottomOf="@id/layoutPasswordConfirm" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
