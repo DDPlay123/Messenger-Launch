@@ -3,9 +3,7 @@ package com.side.project.messenger.ui.activity.launch
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.side.project.messenger.R
 import com.side.project.messenger.databinding.*
@@ -17,9 +15,7 @@ import com.side.project.messenger.utils.*
 import com.side.project.messenger.utils.helper.displayToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import org.koin.core.parameter.parametersOf
-import java.util.concurrent.TimeUnit
 
 class SignInActivity : BaseActivity(), KoinComponent {
     private lateinit var activitySignInBinding: ActivitySignInBinding

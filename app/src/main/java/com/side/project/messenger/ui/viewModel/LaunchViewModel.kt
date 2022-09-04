@@ -12,7 +12,6 @@ import com.side.project.messenger.data.local.UserAccounts
 import com.side.project.messenger.data.repo.FirebaseAuthRepo
 import com.side.project.messenger.data.repo.FirebaseStoreRepo
 import com.side.project.messenger.data.repo.UserAccountRepo
-import com.side.project.messenger.ui.DialogManager
 import com.side.project.messenger.utils.*
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
