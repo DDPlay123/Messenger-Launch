@@ -17,6 +17,10 @@ import com.side.project.messenger.R
 import com.side.project.messenger.databinding.DialogLoadingBinding
 
 class DialogManager(private val activity: Activity) {
+    companion object {
+        fun instance(activity: Activity): DialogManager = DialogManager(activity)
+    }
+
     private var dialog: Dialog? = null
     private var loadingDialog: Dialog? = null
     private var bottomDialog: BottomSheetDialog? = null
@@ -55,7 +59,11 @@ class DialogManager(private val activity: Activity) {
         return view
     }
 
-    fun showBottomDialog(view: ViewDataBinding, isFullExpand: Boolean, bias: Int = 0): ViewDataBinding {
+    fun showBottomDialog(
+        view: ViewDataBinding,
+        isFullExpand: Boolean,
+        bias: Int = 0
+    ): ViewDataBinding {
         cancelBottomDialog()
         bottomDialog = BottomSheetDialog(activity, R.style.BottomSheetDialogTheme)
         bottomDialog?.show()
@@ -73,7 +81,8 @@ class DialogManager(private val activity: Activity) {
             com.google.android.material.R.id.design_bottom_sheet
         )
         if (frameLayout != null) {
-            val bottomSheetBehavior: BottomSheetBehavior<View> = BottomSheetBehavior.from(frameLayout)
+            val bottomSheetBehavior: BottomSheetBehavior<View> =
+                BottomSheetBehavior.from(frameLayout)
             (Resources.getSystem().displayMetrics.heightPixels - bias).let {
                 bottomSheetBehavior.maxHeight = it
                 bottomSheetBehavior.peekHeight = it

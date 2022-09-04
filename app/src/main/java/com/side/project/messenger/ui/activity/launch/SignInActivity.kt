@@ -11,7 +11,8 @@ import com.side.project.messenger.R
 import com.side.project.messenger.databinding.*
 import com.side.project.messenger.ui.DialogManager
 import com.side.project.messenger.ui.activity.BaseActivity
-import com.side.project.messenger.ui.vm.LaunchViewModel
+import com.side.project.messenger.ui.activity.MainActivity
+import com.side.project.messenger.ui.viewModel.LaunchViewModel
 import com.side.project.messenger.utils.*
 import com.side.project.messenger.utils.helper.displayToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,8 +23,8 @@ import java.util.concurrent.TimeUnit
 
 class SignInActivity : BaseActivity(), KoinComponent {
     private lateinit var activitySignInBinding: ActivitySignInBinding
-    private val launchViewModel: LaunchViewModel by viewModel()
-    private val dialog: DialogManager by inject { parametersOf(mActivity) }
+    private val launchViewModel: LaunchViewModel by viewModel { parametersOf(this) }
+    private val dialog = DialogManager.instance(this)
 
     private lateinit var bundle: Bundle
 
@@ -31,14 +32,30 @@ class SignInActivity : BaseActivity(), KoinComponent {
         super.onCreate(savedInstanceState)
         activitySignInBinding = DataBindingUtil.setContentView(this, R.layout.activity_sign_in)
 
+        doInitialization()
         setListener()
+    }
+
+    private fun doInitialization() {
+        activitySignInBinding.run {
+            intent.extras?.let { b ->
+                viewModel = launchViewModel
+                lifecycleOwner = this@SignInActivity
+                launchViewModel.receiveInfoDetail(b)
+            }
+        }
     }
 
     private fun setListener() {
         activitySignInBinding.run {
             // 登入
             btnSignIn.setOnClickListener {
-
+                launchViewModel.signIn(inputAccount.text.toString().trim(), inputPassword.text.toString().trim())
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful && !task.result.isEmpty) {
+                            start(MainActivity::class.java, true)
+                        }
+                    }
             }
             // 註冊
             btnSignUp.setOnClickListener {
@@ -71,10 +88,11 @@ class SignInActivity : BaseActivity(), KoinComponent {
         dialog.showBottomDialog(binding, true, 50).let {
             binding.run {
                 // 連接ViewModel
-                binding.viewModel = launchViewModel
-                binding.lifecycleOwner = mActivity
+                viewModel = launchViewModel
+                lifecycleOwner = this@SignInActivity
+
                 tvCancelHeader.setOnClickListener { dialog.cancelBottomDialog() }
-                imageRefreshHeader.setOnClickListener {  }
+                imageRefreshHeader.setOnClickListener { refresh = true }
                 btnCreateAccount.setOnClickListener {
                     // 驗證資料
                     if (launchViewModel.verifySignUpInfo(
@@ -123,23 +141,20 @@ class SignInActivity : BaseActivity(), KoinComponent {
         dialog.showCenterDialog(false, binding, true).let {
             binding.run {
                 // 連接ViewModel
-                binding.viewModel = launchViewModel
-                binding.lifecycleOwner = mActivity
+                viewModel = launchViewModel
+                lifecycleOwner = this@SignInActivity
                 launchViewModel.displayVerifyState(phone)
+
                 tvCancel.setOnClickListener { dialog.cancelCenterDialog() }
                 btnReSendOTP.setOnClickListener { reSendOTP(phone, token) }
                 tvConfirm.setOnClickListener {
                     if (inputOTP.text.isNotEmpty()) {
                         dialog.showLoading(false)
-                        val phoneAuthCredential = PhoneAuthProvider.getCredential(
-                            code, inputOTP.text.toString()
-                        )
-                        FirebaseAuth.getInstance().signInWithCredential(phoneAuthCredential)
+                        launchViewModel.verifyOTP(code, inputOTP.text.toString())
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    dialog.cancelLoadingDialog()
-                                    logE("ID", taskId.toString())
-                                    start(SignUpActivity::class.java, bundle)
+                                    dialog.cancelAllDialog()
+                                    start(SignUpActivity::class.java, bundle, true)
                                 } else {
                                     dialog.cancelLoadingDialog()
                                     displayToast(getString(R.string.hint_verify_error))
@@ -166,29 +181,13 @@ class SignInActivity : BaseActivity(), KoinComponent {
     // 發送驗證碼
     private fun sendOTP(phone: String) {
         dialog.showLoading(false)
-        // 發送 OTP
-        val options = PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
-            .setPhoneNumber("+886$phone")
-            .setTimeout(60L, TimeUnit.SECONDS)
-            .setActivity(mActivity)
-            .setCallbacks(otpCallbacks)
-            .build()
-
-        PhoneAuthProvider.verifyPhoneNumber(options)
+        launchViewModel.sendOTP(phone, otpCallbacks)
     }
 
+    // 重新發送驗證碼
     private fun reSendOTP(phone: String, token: PhoneAuthProvider.ForceResendingToken) {
         dialog.showLoading(false)
-        // 重新發送 OTP
-        val options = PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
-            .setPhoneNumber("+886$phone")
-            .setTimeout(60L, TimeUnit.SECONDS)
-            .setActivity(mActivity)
-            .setCallbacks(otpCallbacks)
-            .setForceResendingToken(token)
-            .build()
-
-        PhoneAuthProvider.verifyPhoneNumber(options)
+        launchViewModel.reSendOTP(phone, token, otpCallbacks)
     }
 
     private val otpCallbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks =

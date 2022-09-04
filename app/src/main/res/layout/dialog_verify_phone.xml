@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.side.project.messenger.ui.vm.LaunchViewModel" />
+            type="com.side.project.messenger.ui.viewModel.LaunchViewModel" />
 
     </data>
 
@@ -81,7 +81,7 @@
                     android:focusable="@{viewModel.sendOTPState.third}"
                     android:includeFontPadding="false"
                     android:padding="@dimen/_5sdp"
-                    android:text='@{"再次發送 " + viewModel.sendOTPState.second}'
+                    android:text='@{"再次發送" + viewModel.sendOTPState.second}'
                     android:textColor="@color/white"
                     android:textSize="@dimen/_8ssp"
                     android:textStyle="bold"

@@ -21,22 +21,27 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="false"
-            android:screenOrientation="fullSensor"
-            android:windowSoftInputMode="adjustResize" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.activity.launch.SignUpActivity"
             android:exported="false"
-            android:screenOrientation="fullSensor"
-            android:windowSoftInputMode="adjustResize" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.activity.launch.SignInActivity"
             android:exported="false"
-            android:screenOrientation="fullSensor"
-            android:windowSoftInputMode="adjustResize" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.activity.launch.SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppSplash">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppSplash"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

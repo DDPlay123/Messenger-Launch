@@ -6,8 +6,12 @@
     <data>
 
         <variable
+            name="refresh"
+            type="Boolean" />
+
+        <variable
             name="viewModel"
-            type="com.side.project.messenger.ui.vm.LaunchViewModel" />
+            type="com.side.project.messenger.ui.viewModel.LaunchViewModel" />
 
         <import type="android.view.View" />
 
@@ -165,6 +169,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_24sdp"
                         android:background="@null"
+                        android:clear="@{refresh}"
                         android:fontFamily="@font/ubuntu_regular"
                         android:imeOptions="actionNext"
                         android:importantForAccessibility="no"
@@ -208,6 +213,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_24sdp"
                         android:background="@drawable/background_input_sign_up"
+                        android:clear="@{refresh}"
                         android:fontFamily="@font/ubuntu_regular"
                         android:imeOptions="actionNext"
                         android:importantForAccessibility="no"
@@ -382,6 +388,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_24sdp"
                         android:background="@null"
+                        android:clear="@{refresh}"
                         android:fontFamily="@font/ubuntu_regular"
                         android:imeOptions="actionNext"
                         android:importantForAccessibility="no"
@@ -449,6 +456,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_24sdp"
                         android:background="@null"
+                        android:clear="@{refresh}"
                         android:fontFamily="@font/ubuntu_regular"
                         android:imeOptions="actionNext"
                         android:importantForAccessibility="no"
@@ -516,6 +524,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_24sdp"
                         android:background="@null"
+                        android:clear="@{refresh}"
                         android:fontFamily="@font/ubuntu_regular"
                         android:imeOptions="actionNext"
                         android:importantForAccessibility="no"
@@ -583,6 +592,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_24sdp"
                         android:background="@null"
+                        android:clear="@{refresh}"
                         android:fontFamily="@font/ubuntu_regular"
                         android:imeOptions="actionDone"
                         android:importantForAccessibility="no"

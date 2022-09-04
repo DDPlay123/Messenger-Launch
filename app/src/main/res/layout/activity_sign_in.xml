@@ -6,12 +6,8 @@
     <data>
 
         <variable
-            name="email"
-            type="String" />
-
-        <variable
-            name="password"
-            type="String" />
+            name="viewModel"
+            type="com.side.project.messenger.ui.viewModel.LaunchViewModel" />
 
     </data>
 
@@ -80,7 +76,7 @@
                     android:inputType="textEmailAddress"
                     android:paddingStart="@dimen/_16sdp"
                     android:paddingEnd="@dimen/_16sdp"
-                    android:text="@{email}"
+                    android:text="@{viewModel.receiveInfo.second}"
                     android:textColor="@color/primaryText"
                     android:textColorHint="@color/secondaryText"
                     android:textSize="@dimen/_13ssp" />
@@ -123,7 +119,6 @@
                     android:inputType="textPassword"
                     android:paddingStart="@dimen/_16sdp"
                     android:paddingEnd="@dimen/_16sdp"
-                    android:text="@{password}"
                     android:textColor="@color/primaryText"
                     android:textColorHint="@color/secondaryText"
                     android:textSize="@dimen/_13ssp" />

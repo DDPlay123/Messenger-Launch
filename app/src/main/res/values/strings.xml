@@ -45,6 +45,7 @@
     <string name="hint_already_send_otp">已將驗證碼發送至您的電話號碼</string>
     <string name="hint_input_otp">請填入驗證碼</string>
     <string name="hint_verify_error">驗證失敗</string>
+    <string name="hint_verify_success">驗證成功</string>
     <string name="hint_timeout_retry">連線逾時，請重新嘗試</string>
     <string name="hint_empty_error">請勿為空</string>
     <string name="hint_occur_error">發生錯誤</string>
@@ -59,4 +60,5 @@
     <string name="hint_please_check_agree">請勾選同意按鈕</string>
     <string name="hint_log_in_error_title">登入失敗</string>
     <string name="hint_log_in_error_subtitle">請檢查您的帳號及密碼</string>
+    <string name="hint_already_auth">已經註冊過了</string>
 </resources>

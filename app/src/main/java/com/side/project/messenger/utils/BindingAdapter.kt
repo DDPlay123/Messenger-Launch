@@ -79,5 +79,15 @@ class BindingAdapter {
             } catch (e: Exception) {
             }
         }
+
+        @BindingAdapter("android:clear")
+        @kotlin.jvm.JvmStatic
+        fun clearEdit(editText: EditText, clear: Boolean) {
+            try {
+                if (clear)
+                    editText.setText("")
+            } catch (e: Exception) {
+            }
+        }
     }
 }

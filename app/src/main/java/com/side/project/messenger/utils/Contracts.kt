@@ -1,6 +1,7 @@
 package com.side.project.messenger.utils
 
 // Account Detail
+const val KEY_COLLECTION_USERS = "Users"
 const val KEY_USER_ID = "ID"
 const val KEY_USER_IMAGE = "Image"
 const val KEY_USER_FIRST_NAME = "FirstName"

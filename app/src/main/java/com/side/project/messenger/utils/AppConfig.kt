@@ -15,11 +15,12 @@ class AppConfig: Application() {
             androidLogger(Level.DEBUG)
             androidContext(this@AppConfig)
             modules(listOf(
-                dbModule,
-                daoModule,
-                repoModule,
-                dialogModule,
-                viewModelModule
+                firebaseModel,  // Firebase
+                dbModule,       // Room Database
+                daoModule,      // Room Dao
+                repoModule,     // Repository
+                dialogModule,   // Dialog
+                viewModelModule // ViewModel
             ))
         }
     }
