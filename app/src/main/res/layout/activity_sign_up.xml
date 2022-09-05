@@ -61,7 +61,7 @@
                 android:layout_marginTop="@dimen/_18sdp"
                 android:fontFamily="@font/ubuntu_bold"
                 android:gravity="center"
-                android:text='@{"您好，" + viewModel.receiveInfo.first}'
+                android:text='@{"您好，" + viewModel.signUpReceive.first}'
                 android:textColor="@color/primaryText"
                 android:textSize="@dimen/_18ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +118,7 @@
                     android:inputType="phone"
                     android:paddingStart="@dimen/_16sdp"
                     android:paddingEnd="@dimen/_16sdp"
-                    android:text="@{viewModel.receiveInfo.second}"
+                    android:text="@{viewModel.signUpReceive.second}"
                     android:textColor="@color/primaryText"
                     android:textColorHint="@color/secondaryText"
                     android:textSize="@dimen/_13ssp" />
@@ -175,7 +175,7 @@
                     android:inputType="textEmailAddress"
                     android:paddingStart="@dimen/_16sdp"
                     android:paddingEnd="@dimen/_16sdp"
-                    android:text="@{viewModel.receiveInfo.third}"
+                    android:text="@{viewModel.signUpReceive.third}"
                     android:textColor="@color/primaryText"
                     android:textColorHint="@color/secondaryText"
                     android:textSize="@dimen/_13ssp" />

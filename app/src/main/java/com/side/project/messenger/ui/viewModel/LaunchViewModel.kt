@@ -37,9 +37,14 @@ class LaunchViewModel(activity: Activity) : ViewModel(), KoinComponent {
         get() = _sendOTPState
 
     // 1. 名稱 2. 手機 3. 電子郵件
-    private var _receiveInfo = MutableLiveData<Triple<String, String, String>>()
-    val receiveInfo: LiveData<Triple<String, String, String>>
-        get() = _receiveInfo
+    private var _signUpReceive = MutableLiveData<Triple<String, String, String>>()
+    val signUpReceive: LiveData<Triple<String, String, String>>
+        get() = _signUpReceive
+
+    // 1. 手機 2. 密碼
+    private var _signInReceive = MutableLiveData<Pair<String, String>>()
+    val signInReceive: LiveData<Pair<String, String>>
+        get() = _signInReceive
 
     fun verifySignUpInfo(vararg ed: AppCompatEditText): Boolean {
         ed.forEachIndexed { index, edit ->
@@ -82,14 +87,22 @@ class LaunchViewModel(activity: Activity) : ViewModel(), KoinComponent {
             }
     }
 
-    fun receiveInfoDetail(bundle: Bundle) {
+    fun receiveSignUpDetail(bundle: Bundle) {
         bundle.let {
-            _receiveInfo.postValue(Triple(
+            _signUpReceive.postValue(Triple(
                 it.getString(KEY_USER_FIRST_NAME) + it.getString(KEY_USER_LAST_NAME),
                 it.getString(KEY_USER_PHONE) ?: "",
                 it.getString(KEY_USER_EMAIL) ?: ""
-            )
-            )
+            ))
+        }
+    }
+
+    fun receiveSignInDetail(bundle: Bundle) {
+        bundle.let {
+            _signInReceive.postValue(Pair(
+                it.getString(KEY_USER_PHONE) ?: "",
+                it.getString(KEY_USER_PASSWORD) ?: ""
+            ))
         }
     }
 

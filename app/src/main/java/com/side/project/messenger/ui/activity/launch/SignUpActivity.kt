@@ -6,8 +6,6 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import com.side.project.messenger.R
-import com.side.project.messenger.data.local.UserAccount
-import com.side.project.messenger.data.local.UserAccounts
 import com.side.project.messenger.databinding.ActivitySignUpBinding
 import com.side.project.messenger.databinding.DialogPromptBinding
 import com.side.project.messenger.databinding.DialogVerifyPhoneBinding
@@ -16,9 +14,6 @@ import com.side.project.messenger.ui.activity.BaseActivity
 import com.side.project.messenger.ui.viewModel.LaunchViewModel
 import com.side.project.messenger.utils.*
 import com.side.project.messenger.utils.helper.displayToast
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.parameter.parametersOf
@@ -42,10 +37,12 @@ class SignUpActivity : BaseActivity(), KoinComponent {
     private fun doInitialization() {
         activitySignUpBinding.run {
             intent.extras?.let { b ->
-                bundle = b
-                viewModel = launchViewModel
-                lifecycleOwner = this@SignUpActivity
-                launchViewModel.receiveInfoDetail(bundle)
+                if (b.getString(PARSE_TYPE).equals(ActivityParseType.SIGN_IN.name)) {
+                    bundle = b
+                    viewModel = launchViewModel
+                    lifecycleOwner = this@SignUpActivity
+                    launchViewModel.receiveSignUpDetail(bundle)
+                }
             }
         }
     }
@@ -86,19 +83,11 @@ class SignUpActivity : BaseActivity(), KoinComponent {
     private fun registerUsers() {
         activitySignUpBinding.run {
             launchViewModel.signUp(getUsersMap())
-                .addOnSuccessListener { documentReference ->
-                    storageUsers(UserAccounts(
-                        userId = documentReference.id,
-                        userAccount = UserAccount(
-                            userImage = selectImageFile,
-                            userFirstName = bundle.getString(KEY_USER_FIRST_NAME).toString(),
-                            userLastName = bundle.getString(KEY_USER_LAST_NAME).toString(),
-                            userGender = bundle.getString(KEY_USER_GENDER).toString(),
-                            userPhone = bundle.getString(KEY_USER_PHONE).toString(),
-                            userEmail = bundle.getString(KEY_USER_EMAIL).toString(),
-                            userPassword = bundle.getString(KEY_USER_PASSWORD).toString()
-                        )
-                    ))
+                .addOnSuccessListener {
+                    dialog.cancelLoadingDialog()
+                    bundle.remove(PARSE_TYPE)
+                    bundle.putString(PARSE_TYPE, ActivityParseType.SIGN_UP.name)
+                    start(SignInActivity::class.java, bundle, true)
                 }
                 .addOnFailureListener { e ->
                     dialog.cancelLoadingDialog()
@@ -118,18 +107,6 @@ class SignUpActivity : BaseActivity(), KoinComponent {
             KEY_USER_EMAIL to bundle.getString(KEY_USER_EMAIL).toString(),
             KEY_USER_PASSWORD to bundle.getString(KEY_USER_PASSWORD).toString(),
         )
-
-    private fun storageUsers(userAccounts: UserAccounts) {
-        val compositeDisposable = CompositeDisposable()
-
-        compositeDisposable.add(launchViewModel.insertUserAccount(userAccounts)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                dialog.cancelLoadingDialog()
-                start(SignInActivity::class.java, bundle, true)
-            })
-    }
 
     private fun showVerifyPrompt(phone: String) {
         val binding = DialogPromptBinding.inflate(layoutInflater)
