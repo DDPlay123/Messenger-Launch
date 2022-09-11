@@ -18,6 +18,9 @@ import com.side.project.messenger.utils.helper.displayToast
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.parameter.parametersOf
@@ -43,12 +46,9 @@ class SignInActivity : BaseActivity(), KoinComponent {
             lifecycleOwner = this@SignInActivity
             intent.extras?.let { b ->
                 when (b.getString(PARSE_TYPE)) {
-                    ActivityParseType.SIGN_UP.name ->
-                        launchViewModel.receiveSignInDetail(b)
-                    ActivityParseType.SING_OUT.name -> {
-                        // 判斷是否有紀錄登入資訊
-                        launchViewModel.receiveSignInDetail(b)
-                    }
+                    ActivityParseType.SIGN_UP.name,
+                    ActivityParseType.SING_OUT.name ->
+                        launchViewModel.receiveSignUpDetail(b)
                 }
             }
         }
@@ -79,6 +79,10 @@ class SignInActivity : BaseActivity(), KoinComponent {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful && !task.result.isEmpty) {
                         val documentSnapshot = task.result.documents[0] // 取得 User 資料
+                        // 判斷是否紀錄登入資訊
+                        if (activitySignInBinding.checkboxSignIn.isChecked)
+                            launchViewModel.setRecordAccount(documentSnapshot.id)
+
                         // 記錄到 Database
                         storageUsers(UserAccounts(
                             userId = documentSnapshot.id,

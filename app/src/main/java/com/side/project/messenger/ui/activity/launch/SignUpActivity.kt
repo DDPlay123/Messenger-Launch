@@ -41,7 +41,7 @@ class SignUpActivity : BaseActivity(), KoinComponent {
                     bundle = b
                     viewModel = launchViewModel
                     lifecycleOwner = this@SignUpActivity
-                    launchViewModel.receiveSignUpDetail(bundle)
+                    launchViewModel.receiveSignInDetail(bundle)
                 }
             }
         }

@@ -7,13 +7,6 @@ enum class ActivityParseType {
     SIGN_UP, SIGN_IN, SING_OUT
 }
 
-// Data Share Preference
-const val KEY_RECORD_USERS = "RecordUsers"
-
-enum class UsersPreference {
-    USERS_PREFERENCE, ACCOUNT_SHARE
-}
-
 // Account Detail
 const val KEY_COLLECTION_USERS = "Users"
 const val KEY_USER_ID = "ID"

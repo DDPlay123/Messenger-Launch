@@ -12,18 +12,22 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-// https://juejin.cn/post/7112486451626901540
+/***
+    Preference DataStore Template-1
+    參考用，無實際使用。
+    參考：https://juejin.cn/post/7112486451626901540
+ ***/
 
-const val PDS = "pds"
+// String KEY Name
 val KEY_USER_NAME = stringPreferencesKey("userName")
-
-val Context.dataStore : DataStore<Preferences> by preferencesDataStore(name = PDS)
+// DataStore Point
+val Context.dataStore : DataStore<Preferences> by preferencesDataStore(name = "NAME")
 
 class MainViewModel : ViewModel() {
 
-    val preLiveData = MutableLiveData<String>()
+    private val preLiveData = MutableLiveData<String>()
 
-    //存储数据
+    // Storage String Data
     fun putValue(dataStore: DataStore<Preferences>, content: String, key: Preferences.Key<String>) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStore.edit { settings ->
@@ -32,7 +36,7 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    //获取数据
+    // Obtain String Data
     fun getValue(dataStore: DataStore<Preferences>,key: Preferences.Key<String>) {
         viewModelScope.launch(Dispatchers.IO) {
             dataStore.edit { settings ->
@@ -42,9 +46,7 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    /**
-     * 清楚所有键
-     */
+    // Clear All DataStore
     fun clearPreferences(dataStore: DataStore<Preferences>){
         viewModelScope.launch {
             dataStore.edit {
