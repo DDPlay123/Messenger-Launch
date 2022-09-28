@@ -76,7 +76,7 @@
                     android:inputType="textEmailAddress"
                     android:paddingStart="@dimen/_16sdp"
                     android:paddingEnd="@dimen/_16sdp"
-                    android:text="@{viewModel.receiveInfo.second}"
+                    android:text="@{viewModel.signInReceive.first}"
                     android:textColor="@color/primaryText"
                     android:textColorHint="@color/secondaryText"
                     android:textSize="@dimen/_13ssp" />
@@ -119,6 +119,7 @@
                     android:inputType="textPassword"
                     android:paddingStart="@dimen/_16sdp"
                     android:paddingEnd="@dimen/_16sdp"
+                    android:text="@{viewModel.signInReceive.second}"
                     android:textColor="@color/primaryText"
                     android:textColorHint="@color/secondaryText"
                     android:textSize="@dimen/_13ssp" />

@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.side.project.messenger.data.local.UserAccountDb
 import com.side.project.messenger.data.repo.*
 import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import java.util.concurrent.TimeUnit
 
@@ -40,4 +41,5 @@ var repoModule = module {
     single<UserAccountRepo> { UserAccountRepoImpl() }
     single<FirebaseAuthRepo> { (activity: Activity) -> FirebaseAuthRepoImpl(activity) }
     single<FirebaseStoreRepo> { FirebaseStoreRepoImpl() }
+    single<PreferencesRepo> { PreferencesRepoImpl(androidContext()) }
 }

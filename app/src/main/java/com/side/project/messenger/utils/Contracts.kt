@@ -1,5 +1,12 @@
 package com.side.project.messenger.utils
 
+// Bundle 解析
+const val PARSE_TYPE = "ParseType"
+
+enum class ActivityParseType {
+    SIGN_UP, SIGN_IN, SING_OUT
+}
+
 // Account Detail
 const val KEY_COLLECTION_USERS = "Users"
 const val KEY_USER_ID = "ID"
